@@ -44,8 +44,8 @@ collection = mongo_client["rag_db"]["chunks"]
 class QuestionRequest(BaseModel):
     question: str
 
-llm_expansion = ChatGroq(model="qwen3.6-27b", temperature=0, api_key=os.environ.get("GROQ_API_KEY"))
-llm_answer = ChatGroq(model="gpt-oss-120b", temperature=0, api_key=os.environ.get("GROQ_API_KEY"))
+llm_expansion = ChatGroq(model="openai/gpt-oss-20b", temperature=0, api_key=os.environ.get("GROQ_API_KEY"))
+llm_answer = ChatGroq(model="openai/gpt-oss-120b", temperature=0, api_key=os.environ.get("GROQ_API_KEY"))
 
 documents = []
 try:
