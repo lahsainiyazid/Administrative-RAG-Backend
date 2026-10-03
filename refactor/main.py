@@ -8,4 +8,4 @@ app.include_router(ask.router)
 
 @app.get("/")
 def home():
-    return {"Rag is running": "True", "Version": "V25"}
+    return {"Rag is running": "True", "Version": "Final"}

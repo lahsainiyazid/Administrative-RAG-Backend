@@ -18,7 +18,7 @@ def ask_rag_question(request: QuestionRequest,k:int=3):
         )
 
     start = time.time()
-    normalized_question = request.question.strip().lower()
+    normalized_question = json.dump(request.question.strip().lower())
     cache_key = f"rag_cache:{hashlib.md5(normalized_question.encode('utf-8')).hexdigest()}"
 
     # Check Redis Cache
