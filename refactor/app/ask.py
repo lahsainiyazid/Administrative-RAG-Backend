@@ -10,7 +10,7 @@ from app import retrieval
 router = APIRouter()
 
 @router.post("/ask")
-def ask_rag_question(request: QuestionRequest):
+def ask_rag_question(request: QuestionRequest,k:int=3):
     if retrieval.hybrid is None:
         raise HTTPException(
             status_code=400,
@@ -56,7 +56,7 @@ def ask_rag_question(request: QuestionRequest):
     pairs = [(request.question, doc.page_content) for doc in results]
     scores = reranker.predict(pairs)
     ranked_docs = [doc for _, doc in sorted(zip(scores, results), key=lambda x: x[0], reverse=True)]
-    final_docs = ranked_docs[:3]
+    final_docs = ranked_docs[:k]
     reranker_time = time.time() - reranker_start
 
     # LLM Generation
